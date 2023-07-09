@@ -1,0 +1,14 @@
+
+.navbar{
+    position: relative;
+}
+
+.nav__logo{
+    max-width: 200px;
+}
+
+.nav__contain{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
