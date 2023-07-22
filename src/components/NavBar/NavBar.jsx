@@ -1,28 +1,29 @@
 
+
+import { NavLink, Outlet } from "react-router-dom";
 import { CartWidget } from "../CartWidget/CartWidget";
+import { Footer } from "../Footer/Footer";
 import "../NavBar/NavBar.css"
 
 export const NavBar = () =>{
     return(
-        <header> 
+        <>
+        <header className="header"> 
                 <div className="nav__contain"> 
-                    <img className="nav__logo" src="https://t4.ftcdn.net/jpg/04/81/15/53/360_F_481155313_zI5s9UpCuEScodhU1LmIePwCqJIkVBAM.jpg" alt="logo"/>
-                    <ul className="nav ">
-                        <li className="nav-item ">
-                            <a className="nav-link text-bg-light p-3" aria-current="page" href="#">HOME</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link text-bg-light p-3" href="#">NOSOTROS</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link text-bg-light p-3" href="#">NUESTRAS TIENDAS</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link text-bg-light p-3 " href="#"> CONTACTO </a>
-                        </li>
-                    </ul>
-                <CartWidget />
+                    <NavLink to={"/"}>
+                        <img className="nav__logo" src="https://t4.ftcdn.net/jpg/04/81/15/53/360_F_481155313_zI5s9UpCuEScodhU1LmIePwCqJIkVBAM.jpg" alt="logo"/>
+                    </NavLink>
+                    <nav className="nav ">
+                        <NavLink className="nav-link  text-secondary" to={"/"}> Home </NavLink>
+                        <NavLink className="nav-link text-secondary"to={"category/velas"}> Velas </NavLink>
+                        <NavLink className="nav-link text-secondary"to={"category/difusores"}> Difusores </NavLink>
+                        <NavLink className="nav-link text-secondary"to={"category/accesorios"}> Accesorios </NavLink>
+                    </nav>
+                        <CartWidget />
             </div>
         </header>
+        <Outlet/>
+        <Footer />
+        </>
     )
 }

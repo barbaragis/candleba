@@ -1,0 +1,40 @@
+.producto__detalle{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.producto__imagen img{
+    width: 350px;
+    margin-bottom: 16px;
+
+}
+
+.producto__info{
+    width: 100%;
+}
+
+.producto__titulo{
+    font-family: 'Poppins', sans-serif;
+    font-size: 21px;
+    font-weight: 300;
+}
+
+.producto__descripcion{
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.producto__categoria{
+    font-size: 14px;
+}
+
+.producto__precio{
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    font-size: 18px;
+    font-weight: bolder;
+}

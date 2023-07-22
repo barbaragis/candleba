@@ -1,0 +1,35 @@
+.cantidad{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.cantidad__menos, .cantidad__mas{
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.cantidad__numero{
+    width: 40px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.agregar{
+    width: 170px;
+    padding: 10px 20px;
+    background-color: black;
+    color: #fff;
+    font-size: 16px;
+    border:none;
+    border-radius: 5px;
+    cursor: pointer;
+}
