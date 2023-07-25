@@ -28,7 +28,7 @@ const CANDLES = [
     },
     {
     id:4,
-    title:"Portavela de vidrio Ambar",
+    title:"Portavela Ambar",
     category: "Accesorios",
     price: 400 ,
     description:"La silueta redondeada le da al portavelas de vidrio ahumado soplado a mano un ambiente ligeramente retro. La llama baila a través del cristal cuando se usa con una vela, pero también nos gusta como un pequeño jarrón decorativo con flores secas o falsas. ",
@@ -37,7 +37,7 @@ const CANDLES = [
     },
     {
     id:5,
-    title:"Portavelas de acero inoxidable",
+    title:"Portavelas Acero",
     category: "Accesorios",
     price: 400 ,
     description:"Originalmente creados para una firma de diseño italiana, estos portavelas huracán de Gianfranco Frattini combinan vidrio y acero inoxidable de una manera completamente lujosa. Juntos, la base de acero inoxidable pulido y el vidrio protector son casi escultóricos en su efecto unificado.",
@@ -55,7 +55,7 @@ const CANDLES = [
     },
     {
     id:7,
-    title:"Difusor Home Office",
+    title:"Difusor Home",
     category: "Difusores",
     price: 400 ,
     description:"Los nenúfares y el pachulí traen el aire libre. Canela energizante complementada con notas relajantes de ámbar y vainilla.Notas de salida: aire fresco, nenúfares, ámbar Notas medias: Oud, canela, pétalos de heliotropo . Notas de fondo: pachulí, madera de gaiac, vainilla",
