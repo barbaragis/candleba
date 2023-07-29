@@ -61,7 +61,17 @@ const CANDLES = [
     description:"Los nenúfares y el pachulí traen el aire libre. Canela energizante complementada con notas relajantes de ámbar y vainilla.Notas de salida: aire fresco, nenúfares, ámbar Notas medias: Oud, canela, pétalos de heliotropo . Notas de fondo: pachulí, madera de gaiac, vainilla",
     img:"https://homesick.com/cdn/shop/products/HMS.ReedDiffuserLight.HomeOffice.Ecom1_620x620.jpg?v=1616179508",
     stock: 10,
-    }
+    },
+    {
+        id:8,
+        title:"Vela Spa",
+        category: "Velas",
+        price: 400 ,
+        description:"La relajación inunda los sentidos con notas de agua de pepino y muguet. La cáscara de limón rejuvenece la mente mientras que el pachulí pone a tierra el alma. Notas de salida: madera de oud, muguet, notas medias: agua de pepino, melón, notas base: pachulí, cáscara de limón.",
+        img:"https://homesick.com/cdn/shop/products/HMS.Spa-cation.Candle.Ecom.1_1_620x620.jpg?v=1649764704",
+        stock: 10,
+        }
+    
 
 ]
 
@@ -83,7 +93,7 @@ export const getCandles= (id) =>{
     return new Promise ((res) =>{
         setTimeout(() =>{
             res(candle);
-        },1500);
+        },500);
     });
 
 }

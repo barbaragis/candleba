@@ -1,0 +1,44 @@
+.carrito{
+    display: flex;
+    justify-content: space-around;
+    padding: 16px;
+    align-items: center;
+    font-family: Roboto;
+    font-size: 16px;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.carrito__imagen{
+    width: 200px;
+}
+
+h2{
+    font-size: 16px;
+    font-family: Roboto;
+}
+
+.carrito__vaciar{
+    background-color: grey;
+    margin-right: 20px;
+}
+
+.carrito__checkout{
+    background-color: blue;
+    gap: 20px;
+}
+
+.carrito__etiquetas{
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr 1fr;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    padding: 16px;
+}
+
+.carrito__etiqueta{
+    text-align: center;
+}
+
