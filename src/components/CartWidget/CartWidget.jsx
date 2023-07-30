@@ -1,5 +1,5 @@
 import { HiShoppingCart} from "react-icons/hi" 
-import { useCartContext } from "../../state/Cart.Context"
+import { useCartContext } from "../../state/CartContext"
 import { Link } from "react-router-dom";
 import "../CartWidget/CartWidget.css"
 

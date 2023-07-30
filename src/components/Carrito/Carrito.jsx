@@ -1,6 +1,6 @@
 
 import { useEffect } from "react";
-import { useCartContext } from "../../state/Cart.Context";
+import { useCartContext } from "../../state/CartContext";
 import "../Carrito/Carrito.css";
 import { FiTrash2} from "react-icons/fi" 
 

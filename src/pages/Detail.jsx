@@ -3,7 +3,7 @@ import { ItemCount } from "../components/ItemCount/ItemCount";
 import { getCandle } from "../lib/candles.requests";
 import "../pages/Detail.css"
 import { useParams } from "react-router-dom";
-import { useCartContext } from "../state/Cart.Context";
+import { useCartContext } from "../state/CartContext";
 
 export const Detail = () =>{
     const {id} = useParams();
