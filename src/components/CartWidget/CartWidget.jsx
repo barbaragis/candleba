@@ -9,8 +9,8 @@ export const CartWidget = () => {
     return(
         <div className="carrito__container">
             <Link to={"/carrito"}>
-                <HiShoppingCart className="carrito__icono"/> 
-                <span className="carrito__cantidad  position-absolute top-60 start-90 translate-middle badge text-bg-secondary">{carritoCantidad()} </span>
+                <HiShoppingCart className="carrito__icono"/>   {carritoCantidad() ?
+                <span className="carrito__cantidad  position-absolute translate-middle badge text-bg-secondary">  {carritoCantidad()  }</span> : null}
             </Link>
         </div>
     )

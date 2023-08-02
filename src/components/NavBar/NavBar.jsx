@@ -12,7 +12,7 @@ export const NavBar = () =>{
         <header className="header"> 
                 <div className="nav__contain"> 
                     <NavLink to={"/"}>
-                        <img className="nav__logo" src="../public/LOGO.png" alt="logo"/>
+                        <img className="nav__logo" src="/logo.png" alt="logo"/>
                     </NavLink>
                     <div className="nav">
                         <NavLink className="nav-link" to={"/"}> Home</NavLink>

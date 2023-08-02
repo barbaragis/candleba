@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getCandles } from "../lib/candles.requests";
 import { ItemListContainer } from "../components/ItemListContainer/ItemListContainer";
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const Home = () =>{
     const [products , setProducts] = useState([]);
@@ -19,7 +19,7 @@ export const Home = () =>{
 
     return(
         <div>
-            <span className="cargando"> {Cargando ? "Cargando productos..." : "Productos"} </span>
+            {Cargando && <ClipLoader/>}
             <ItemListContainer products={products} />
         </div>
     )

@@ -12,7 +12,9 @@ export const Carrito = () =>{
 
     return(
         <div >
-            <h2> Carrito </h2>
+                        {carrito.length ? (
+            <>
+            <h2> Carrito </h2> 
             <div className="carrito__etiquetas">
                 <div className="carrito__etiqueta"> Precio </div>
                 <div className="carrito__etiqueta"> Cantidad </div>
@@ -41,6 +43,10 @@ export const Carrito = () =>{
                 <button className="carrito__vaciar" onClick={vaciarCarrito}> Vaciar carrito </button>
                 <button> Checkout </button>
             </div>
+            </> 
+            ) : (
+                <h1> Tu carrito está vacio </h1>
+            )}
         </div>
         )
 }

@@ -93,7 +93,7 @@ export const getCandles= (id) =>{
     return new Promise ((res) =>{
         setTimeout(() =>{
             res(candle);
-        },500);
+        },1500);
     });
 
 }
