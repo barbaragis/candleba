@@ -1,0 +1,20 @@
+.portada__container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.portada__image{
+    width: 20%;
+    flex:1;
+}
+
+.portada__image img{
+    width: 900px;
+    height: auto;
+}
+
+.portada__texto{
+    width: 50%;
+}

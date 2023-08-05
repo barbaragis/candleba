@@ -2,16 +2,19 @@ import { useEffect, useState } from "react";
 import { ItemCount } from "../components/ItemCount/ItemCount";
 import { getCandle } from "../lib/candles.requests";
 import "../pages/Detail.css"
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import { useCartContext } from "../state/CartContext";
 
 export const Detail = () =>{
     const {id} = useParams();
+    const navigate = useNavigate();
     const [candle, setCandle] = useState({});
     const {agregarProducto} = useCartContext();
 
     useEffect(() =>{
-        getCandle(+id).then((res) =>{
+        getCandle(id).then((res) =>{
+            if(!res) return navigate ('/');
             setCandle(res);
         });
     }, []);
@@ -20,7 +23,7 @@ export const Detail = () =>{
         agregarProducto(candle, cantidad);
     }
 
-    if(!Object.keys(candle).length) return
+    if(!Object.keys(candle).length) return 
 
     return(
         <div className="producto__detalle">

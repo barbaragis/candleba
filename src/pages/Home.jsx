@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react"
-import { getCandles } from "../lib/candles.requests";
+import { cargarProductos, getCandles } from "../lib/candles.requests";
 import { ItemListContainer } from "../components/ItemListContainer/ItemListContainer";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Portada } from "../components/Portada/Portada";
+
+
 
 export const Home = () =>{
     const [products , setProducts] = useState([]);
     const [Cargando , setCargando] = useState(true);
 
     useEffect(() =>{
-
+        cargarProductos()
         getCandles()
         .then(res => {
             setCargando (false);
@@ -19,6 +22,7 @@ export const Home = () =>{
 
     return(
         <div>
+            <Portada/>
             {Cargando && <ClipLoader/>}
             <ItemListContainer products={products} />
         </div>

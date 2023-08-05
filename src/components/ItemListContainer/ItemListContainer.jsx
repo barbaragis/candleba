@@ -9,8 +9,9 @@ export const ItemListContainer = ({ products }) => {
     }
 
     return(
-    <div className="producto__container"> 
+    <div className="producto__container">
         {products.map((product) =>(
+            <div className="producto__item" key={product.id}>
         <Item key={product.id}
         id={product.id}
         img={product.img}
@@ -18,6 +19,7 @@ export const ItemListContainer = ({ products }) => {
         title={product.title}
         price={product.price}
         />
+        </div>
         ))}
     </div>
 );}

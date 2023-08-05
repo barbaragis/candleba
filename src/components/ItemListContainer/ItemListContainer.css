@@ -3,10 +3,10 @@ h1{
     margin-bottom: 16px;
 }
 
-.producto__container{
+ .producto__container{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
-    gap:10px;
-    margin-bottom: 16px;
     margin-bottom: 30px;
-}
+    gap: 20px;
+} 
+
