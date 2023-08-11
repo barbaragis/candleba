@@ -1,40 +1,44 @@
-.producto__detalle{
+.item__detalle{
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.producto__imagen img{
-    width: 350px;
-    margin-bottom: 16px;
+.item__imagen img{
+    width: 400px;
+    height: 400px;
+    border-radius: 8px;
+}
+
+.item__info{
+    width: 50%;
 
 }
 
-.producto__info{
-    width: 100%;
+.item__titulo{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: 500;
 }
 
-.producto__titulo{
-    font-family: 'Poppins', sans-serif;
-    font-size: 21px;
-    font-weight: 300;
-}
-
-.producto__descripcion{
+.item__descripcion , 
+.item__precio{
     font-size: 16px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     text-align: justify;
     margin-top: 20px;
+    line-height: 30px;
+    padding: 16px;
 }
 
-.producto__categoria{
+.item__categoria{
     font-size: 14px;
+    font-style: italic;
 }
 
-.producto__precio{
-    font-family: 'Poppins', sans-serif;
-    color: black;
-    font-size: 18px;
-    font-weight: bolder;
-}

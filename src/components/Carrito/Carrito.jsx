@@ -3,49 +3,56 @@ import { useEffect } from "react";
 import { useCartContext } from "../../state/CartContext";
 import "../Carrito/Carrito.css";
 import { FiTrash2} from "react-icons/fi" 
+import { Link } from "react-router-dom";
 
 export const Carrito = () =>{
-    const {carrito , vaciarCarrito , borrarProducto} = useCartContext();
+    const {carrito , vaciarCarrito , borrarProducto , totalCarrito} = useCartContext();
     useEffect(() =>{
         console.log({carrito})
     }, [carrito]);
 
     return(
-        <div >
-                        {carrito.length ? (
+        <div>
+            {carrito.length ? (
             <>
-            <h2> Carrito </h2> 
+            <h2 className="text-center fs-1 mb-3"> Carrito </h2> 
             <div className="carrito__etiquetas">
-                <div className="carrito__etiqueta"> Precio </div>
-                <div className="carrito__etiqueta"> Cantidad </div>
-                <div className="carrito__etiqueta"> Total </div>
+                <p >Producto</p>
+                <p >Precio</p>
+                <p >Cantidad</p>
+                <p >Total</p>
             </div>
             {carrito.map((item) =>(
-                <div className="carrito " key={item.id} onClick={() => borrarProducto (item.id)}>
-                    <img  src={item.img} className="carrito__imagen" alt="..."/>
-                    <div className=" carrito__titulo">
+                <div className="carrito" key={item.id} onClick={() => borrarProducto (item.id)}>
+                    <div >
                         <h2 > {item.title} </h2>
-                        <p>{item.category} </p>
                     </div>
-                    <div className="carrito__titulo">
-                        <span> $ {item.price}</span> 
+                    <div className="carrito__precio"> 
+                    <p> $ {item.price} </p> </div>
+                    <div> 
+                    <p> {item.cantidad} </p></div>
+                    <div > 
+                    <p>$ {item.price * item.cantidad} </p></div>
+                    <div  className="carrito__borrar"   > 
+                    <button onClick={borrarProducto} > <FiTrash2 /> </button>
                     </div>
-                    <div className="carrito__titulo">
-                        <span> {item.cantidad}</span>
-                    </div>
-                    <div className="carrito__titulo">
-                        <p > $ {item.price * item.cantidad}</p>
-                    </div>
-                     <button onClick={borrarProducto} > <FiTrash2 /> </button>
                 </div>
             ))}
-            <div>
-                <button className="carrito__vaciar" onClick={vaciarCarrito}> Vaciar carrito </button>
-                <button> Checkout </button>
+            <div className="carrito__total ">
+                <p className="text-center fs-6"> Total de su compra  $ {totalCarrito()} </p>
             </div>
+            <div>
+            </div>
+            <div className="carrito__botones">
+                <button className="carrito__vaciar" onClick={vaciarCarrito}> VACIAR CARRITO </button>
+                <Link className="carrito__checkout" to={"/Formulario"} >
+                    <button > CONFIRMAR PEDIDO </button>
+                </Link>
+            </div>
+            
             </> 
             ) : (
-                <h1> Tu carrito está vacio </h1>
+                <h2 className="text-center fs-1 mb-3"> Tu carrito está vacio </h2>
             )}
         </div>
         )

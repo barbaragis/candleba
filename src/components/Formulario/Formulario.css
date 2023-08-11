@@ -1,0 +1,64 @@
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form{
+    width: 300px;
+}
+
+.form-label{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.form-control{
+    padding: 8px;
+    margin-bottom: 16px;
+    border:1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-control:focus{
+    outline: none;
+    border-color: #007bff;
+}
+
+.form-button{
+    font-family: 'Montserrat', sans-serif;
+    background-image: linear-gradient(to top, #a3bded 0%, #6991c7 100%);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-button:disabled{
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.form-button:hover{
+    background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%);
+}
+
+
+.mensaje{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.card{
+    padding: 20px;
+    background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%);
+}
+

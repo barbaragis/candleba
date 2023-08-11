@@ -3,33 +3,44 @@
     align-items: center;
     margin-bottom: 20px;
     justify-content: center;
+
 }
 
 .cantidad__menos, .cantidad__mas{
-    width: 30px;
+    width: 50px;
     height: 30px;
-    background-color: black;
+    background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%);
     color: #fff;
     font-size: 18px;
-    border: none;
-    border-radius: 5px;
+    border: 1px solid gray;
     cursor: pointer;
+    border-radius: 1px;
 }
 
 
 .cantidad__numero{
-    width: 40px;
+    width: 50px;
+    height: 30px;
     text-align: center;
     font-size: 16px;
+    border: 1px solid gray;
+    padding: 4px;
 }
 
 .agregar{
-    width: 170px;
-    padding: 10px 20px;
-    background-color: black;
+    font-family: 'Montserrat', sans-serif;
+    width: 210px;
+    height: 50px;
+    background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%);
     color: #fff;
     font-size: 16px;
     border:none;
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+.agregar:hover{
+    opacity: 0.8;
+}
+

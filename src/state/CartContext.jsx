@@ -33,7 +33,9 @@ export const CartProvider = ({children}) =>{
 
     const vaciarCarrito = () => setCarrito([]);
 
-    const value = {carrito, agregarProducto , carritoCantidad , borrarProducto, vaciarCarrito};
+    const totalCarrito = () => carrito.reduce((total, item) => total + item.price * item.cantidad,0); 
+
+    const value = {carrito, agregarProducto , carritoCantidad , borrarProducto, vaciarCarrito, totalCarrito};
 
     return(
         <CartContext.Provider value={value} displayName="CartContext" >

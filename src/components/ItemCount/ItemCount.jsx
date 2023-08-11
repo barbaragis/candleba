@@ -23,7 +23,8 @@ export const ItemCount = ({stock , onAdd}) =>{
                 <span className="cantidad__numero"> {count} </span>
                 <button className="cantidad__mas" onClick={() => sumar ()}> + </button>
             </div>
-            <button className="agregar" disabled={!stock} onClick={() => onAdd(count)}> Agregar al carrito </button>
+            <button className="agregar fs-8" disabled={!stock} onClick={() => onAdd(count)}> 
+                AGREGAR AL CARRITO </button>
         </div>
     )
 }

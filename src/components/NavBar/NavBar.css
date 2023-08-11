@@ -1,10 +1,11 @@
+
 .nav a {
-    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
     color: black;
     text-decoration: none;
-    margin-right: 15px;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
 .nav a:hover{
@@ -18,16 +19,16 @@
 }
 
 .nav__logo{
-    max-width: 250px;
+    width: 250px;
     display: flex;
+    justify-content: space-between;
 }
 
 .nav__contain{
+    height: 150px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-
 }
 
 

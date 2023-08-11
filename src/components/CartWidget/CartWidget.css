@@ -1,22 +1,25 @@
 .carrito__container{
-    display: flex;
-    align-items: center;
+    position: relative;
 }
 
 .carrito__icono{
     color: black;
-    font-size: 24px;
+    font-size: 2rem;
     margin-right: 5px;
 }
 
 .carrito__cantidad{
-    width: 25px;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: red;
+    color: white;
     font-size: 12px;
-    color: black;
-    text-decoration: none;
-    font-family: Roboto;
-    border-radius: 10px;
-    position: relative;
-    top: 120px;
-
+    border-radius: 50%;
+    width: 25px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
 }
