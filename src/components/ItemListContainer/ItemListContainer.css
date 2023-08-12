@@ -10,3 +10,10 @@ h1{
 
 } 
 
+@media (max-width: 768px) {
+    .producto__container{
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+}

@@ -59,20 +59,17 @@ function Formulario  () {
         }
         const {carrito} = useCartContext();
 
-        const items = carrito.map(({ id, title , price}) =>({
+        const items = carrito.map(({ id, title , price }) =>({
             id,
             title,
             price,
         }));
 
         const crearOrden = async () =>{
-
-        const orden = {
+            const orden = {
                 comprador: {nombre , telefono , email},
                 items,
-                total: 0
             };
-
 
 
         const id = await agregarOrden(orden);
@@ -86,7 +83,6 @@ function Formulario  () {
             setEmail('')
             setEmailValido('')
             setTelefono('')
-
     }
 
         return(
@@ -94,24 +90,24 @@ function Formulario  () {
             <h1> DATOS DE CONTACTO </h1>
             <form className="formulario" onSubmit={handleSubmit}>
                 <div className="form" >
-                    <label for="formGroupExampleInput" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingresa tu nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                    <label for="formGroupExampleInput" className="form-label">Nombre</label>
+                    <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Ingresa tu nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} />
                 </div>
                 <div  className="form">
-                    <label for="formGroupExampleInput" class="form-label"> Apellido</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingresa tu apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} />
+                    <label for="formGroupExampleInput" className="form-label"> Apellido</label>
+                    <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Ingresa tu apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} />
                 </div>
                 <div  className="form">
-                <label for="formGroupExampleInput2" class="form-label">Email</label> 
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Ingresa tu correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} /> 
+                <label for="formGroupExampleInput2" className="form-label">Email</label> 
+                <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Ingresa tu correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)} /> 
                 </div>
                 <div   className="form">
-                <label for="formGroupExampleInput2" class="form-label">Confirmar tu correo electrónico</label> 
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Ingresa tu correo electrónico" value={emailValido} onChange={(e) => setEmailValido(e.target.value)} /> 
+                <label for="formGroupExampleInput2" className="form-label">Confirmar tu correo electrónico</label> 
+                <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Ingresa tu correo electrónico" value={emailValido} onChange={(e) => setEmailValido(e.target.value)} /> 
                 </div>
                 <div  className="form" >
-                <label for="formGroupExampleInput2" class="form-label">Teléfono</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Ingresa tu teléfono"  value={telefono} onChange={(e) => setTelefono(e.target.value)}/>
+                <label for="formGroupExampleInput2" className="form-label">Teléfono</label>
+                <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="Ingresa tu teléfono"  value={telefono} onChange={(e) => setTelefono(e.target.value)}/>
                 <button className="form-button" onClick={crearOrden} disabled={!esValido}> Realizar pedido </button>
                 </div>
                 </form>

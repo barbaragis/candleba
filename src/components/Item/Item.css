@@ -23,7 +23,7 @@
 .producto__imagen{
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
     margin-bottom: 10px;
 }
@@ -80,4 +80,25 @@
 
 .producto__boton:active{
     background-color: grey;
+}
+
+@media (max-width: 768px) {
+    .producto__card{
+        height: auto;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    .producto__titulo{
+        font-size: 20px;
+    }
+
+    .producto__categoria,
+    .producto__precio{
+        font-size: 12px;
+    }
+
+    .producto__imagen{
+        margin: 0 auto;
+    }
 }
