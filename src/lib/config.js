@@ -4,12 +4,12 @@ import {getFirestore} from "firebase/firestore";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCvbgn6iu5dfSsIF4IuGK1XjxgLN2S9ocw",
-  authDomain: "candleba-f5085.firebaseapp.com",
-  projectId: "candleba-f5085",
-  storageBucket: "candleba-f5085.appspot.com",
-  messagingSenderId: "798130854191",
-  appId: "1:798130854191:web:7f8a166ca67b6e1bf869da"
+  apiKey: import.meta.env.VITE_FBS_API_KEY ,
+  authDomain: import.meta.env.VITE_FBS_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FBS_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FBS_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FBS_SENDER ,
+  appId: import.meta.env.VITE_FBS_APP_ID
 };
 
 
