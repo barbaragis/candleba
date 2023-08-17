@@ -8,21 +8,22 @@ export const CartProvider = ({children}) =>{
     const [carrito, setCarrito] = useState([]);
 
     const agregarProducto = (item, cantidad) =>{
-
         const element = carrito.find((producto) => producto.id === item.id)
 
-        if (element) {
-            const carritoActualizado = carrito.map((producto)=>{
-                if(producto.id === item.id){
-                    return{...producto , cantidad : producto.cantidad + cantidad}
-                }
-                return producto;
-            }) ;
-            setCarrito(carritoActualizado);
-        }else{
-        setCarrito([...carrito, {...item, cantidad}])
+        if (!element) {
+            return setCarrito ([...carrito , {...item , cantidad}]);
         }
-    }
+
+        const actualizarCarrito = element.cantidad + cantidad;
+
+            if (actualizarCarrito <= item.stock) {
+                const nuevoCarrito = carrito.map ((producto) =>
+                producto.id === item.id ? {...producto , cantidad: actualizarCarrito} : producto);
+                setCarrito(nuevoCarrito);
+            }else {
+                alert('No hay mas stock')
+            }
+        }
 
     const borrarProducto = (id) =>{
         const carritoNuevo= carrito.filter((producto) => producto.id !== id);
@@ -35,7 +36,7 @@ export const CartProvider = ({children}) =>{
 
     const totalCarrito = () => carrito.reduce((acc, item) => acc + item.price * item.cantidad,0); 
 
-    const value = {carrito, agregarProducto , carritoCantidad , borrarProducto, vaciarCarrito, totalCarrito};
+    const value = {carrito, agregarProducto , carritoCantidad , borrarProducto, vaciarCarrito, totalCarrito };
 
     return(
         <CartContext.Provider value={value} displayName="CartContext" >

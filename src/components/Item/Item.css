@@ -56,14 +56,14 @@
     font-size: 13px;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-    color: white;
-    border: none;
+    background-color: white;
+    color: black;
     padding: 8px 16px;
     text-align: center;
     text-decoration: none;
     display: none;
     position: absolute;
+    border-color: black;
     top: 30%;
     left: 50%;
     transform: translate(-50% , -50%);
@@ -75,7 +75,8 @@
 }
 
 .producto__boton:hover{
-    background-color: grey;
+    background-color: black;
+    color: white;
 }
 
 .producto__boton:active{

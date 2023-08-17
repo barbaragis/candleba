@@ -7,6 +7,7 @@ import { useCartContext } from "../state/CartContext";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 export const Detail = () =>{
     const {id} = useParams();
     const navigate = useNavigate();
@@ -20,9 +21,12 @@ export const Detail = () =>{
         });
     }, []);
 
+
     const handleAgregar = (cantidad) => {
+
         agregarProducto(candle, cantidad);
-    };
+    }
+
 
     if(!Object.keys(candle).length) return 
 
@@ -36,7 +40,8 @@ export const Detail = () =>{
                 <h2 className="item__titulo"> {candle.title} </h2>
                 <span className="item__precio"> $ {candle.price} </span>
                 <p className="item__descripcion"> {candle.description} </p>
-                <ItemCount stock={candle.stock }  onAdd={handleAgregar} />
+                <span> Solo quedan {candle.stock}</span>
+                <ItemCount stock={candle.stock}  onAdd={handleAgregar} />
             </div>
         </div>
     )

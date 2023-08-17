@@ -7,10 +7,9 @@
 }
 
 .cantidad__menos, .cantidad__mas{
-    width: 50px;
+    width: 40px;
     height: 30px;
-    background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%);
-    color: #fff;
+    color: black;
     font-size: 18px;
     border: 1px solid gray;
     cursor: pointer;
@@ -19,28 +18,29 @@
 
 
 .cantidad__numero{
-    width: 50px;
+    width: 40px;
     height: 30px;
     text-align: center;
     font-size: 16px;
-    border: 1px solid gray;
+    border: 1px solid black;
     padding: 4px;
 }
 
 .agregar{
     font-family: 'Montserrat', sans-serif;
-    width: 210px;
-    height: 50px;
-    background-image: linear-gradient(to top, #a7a6cb 0%, #8989ba 52%, #8989ba 100%);
-    color: #fff;
-    font-size: 16px;
-    border:none;
-    border-radius: 5px;
+    width: 120px;
+    height: 40px;
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    border-color: black;
     cursor: pointer;
 }
 
 
 .agregar:hover{
+    background-color: gray;
+    color: white;
     opacity: 0.8;
 }
 

@@ -22,13 +22,13 @@
 .item__titulo{
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 500;
 }
 
 .item__descripcion , 
 .item__precio{
-    font-size: 16px;
+    font-size: 13px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     text-align: justify;

@@ -20,7 +20,7 @@ export const Carrito = () =>{
                 <p >Producto</p>
                 <p >Precio</p>
                 <p >Cantidad</p>
-                <p >Total</p>
+                <p >Subtotal</p>
             </div>
             {carrito.map((item) =>(
                 <div className="carrito" key={item.id} onClick={() => borrarProducto (item.id)}>

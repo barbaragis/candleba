@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "../ItemCount/ItemCount.css"
+import { BsCart3} from "react-icons/bs" ;
 
-export const ItemCount = ({stock , onAdd}) =>{
+export const ItemCount = ({stock = 0 , onAdd}) =>{
 
     const [count , setCount] = useState(1);
 
@@ -17,14 +18,20 @@ export const ItemCount = ({stock , onAdd}) =>{
 
 
     return(
-        <div>
             <div className="cantidad">
-                <button className="cantidad__menos" onClick={() => restar() }> - </button>
-                <span className="cantidad__numero"> {count} </span>
-                <button className="cantidad__mas" onClick={() => sumar ()}> + </button>
-            </div>
-            <button className="agregar fs-8" disabled={!stock} onClick={() => onAdd(count)}> 
-                AGREGAR AL CARRITO </button>
-        </div>
-    )
+            { stock ? (
+                <>
+                <div>
+                    <button className="cantidad__menos" onClick={() => restar() }> - </button>
+                    <span className="cantidad__numero"> {count} </span>
+                    <button className="cantidad__mas" onClick={() => sumar ()} disabled={count > (stock -1)} > + </button>
+                    </div>
+                    <button className="agregar fs-8" disabled={stock === 0} onClick={() => {onAdd(count); setCount(1) }} >  
+                    <BsCart3> </BsCart3> AGREGAR  </button>
+                </>
+        ) : (
+            <h1> Sin stock</h1>
+    )}
+    </div> 
+    );
 }
