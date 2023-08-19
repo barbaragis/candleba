@@ -12,10 +12,10 @@ export const Carrito = () =>{
     }, [carrito]);
 
     return(
-        <div>
+        <div >
             {carrito.length ? (
             <>
-            <h2 className="text-center fs-1 mb-3"> Carrito </h2> 
+            <h2 className="carrito__sub "> Carrito </h2> 
             <div className="carrito__etiquetas">
                 <p >Producto</p>
                 <p >Precio</p>
@@ -24,8 +24,9 @@ export const Carrito = () =>{
             </div>
             {carrito.map((item) =>(
                 <div className="carrito" key={item.id} onClick={() => borrarProducto (item.id)}>
-                    <div >
+                    <div className="carrito__producto" >
                         <h2 > {item.title} </h2>
+                        <img className="carrito__img" src={item.img}  />
                     </div>
                     <div className="carrito__precio"> 
                     <p> $ {item.price} </p> </div>
@@ -39,7 +40,7 @@ export const Carrito = () =>{
                 </div>
             ))}
             <div className="carrito__total ">
-                <p className="text-center fs-6"> Total de su compra  $ {totalCarrito()} </p>
+                <p className="text-center fs-6"> Total de su compra : $ {totalCarrito()} </p>
             </div>
             <div>
             </div>
@@ -52,7 +53,11 @@ export const Carrito = () =>{
             
             </> 
             ) : (
-                <h2 className="text-center fs-1 mb-3"> Tu carrito está vacio </h2>
+                <>
+                <h2 className="carrito__vacio"> Tu carrito está vacio </h2>
+                <span className="carrito__sub"> Aún no tienen ningun item en tu carrito. </span>
+                <Link className="text-secondary-emphasis" to={"/"} > Continuar comprando </Link>
+                </>
             )}
         </div>
         )

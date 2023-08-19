@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const CartContext = createContext([]);
 
@@ -7,8 +8,10 @@ export const useCartContext = () => useContext(CartContext);
 export const CartProvider = ({children}) =>{
     const [carrito, setCarrito] = useState([]);
 
+    const itemCarrito = (id) => carrito.find((producto) => producto.id === id);
+
     const agregarProducto = (item, cantidad) =>{
-        const element = carrito.find((producto) => producto.id === item.id)
+        const element = itemCarrito(item.id)
 
         if (!element) {
             return setCarrito ([...carrito , {...item , cantidad}]);
@@ -21,7 +24,15 @@ export const CartProvider = ({children}) =>{
                 producto.id === item.id ? {...producto , cantidad: actualizarCarrito} : producto);
                 setCarrito(nuevoCarrito);
             }else {
-                alert('No hay mas stock')
+                toast.error('No hay más stock' , {
+                    position: "top-center",
+                    autoClose:1000,
+                    hideProgressBar : true,
+                    closeOnClick: true,
+                    pauseOnHover : true,
+                    draggable : true,
+                    progress: undefined,
+                })
             }
         }
 
@@ -36,11 +47,12 @@ export const CartProvider = ({children}) =>{
 
     const totalCarrito = () => carrito.reduce((acc, item) => acc + item.price * item.cantidad,0); 
 
-    const value = {carrito, agregarProducto , carritoCantidad , borrarProducto, vaciarCarrito, totalCarrito };
+    const value = {carrito, agregarProducto , carritoCantidad , borrarProducto, vaciarCarrito, totalCarrito , itemCarrito};
 
     return(
         <CartContext.Provider value={value} displayName="CartContext" >
                 {children}
+                <ToastContainer />
         </CartContext.Provider>
     )
 };

@@ -6,7 +6,7 @@ const ordenRef = collection(db, 'ordenes');
 
 export const agregarOrden = async (orden) =>{
     const ordenDoc = await addDoc(ordenRef , orden);
+
     return ordenDoc.id;
 
-    
 }

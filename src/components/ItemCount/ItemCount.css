@@ -7,34 +7,33 @@
 }
 
 .cantidad__menos, .cantidad__mas{
-    width: 40px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     color: black;
     font-size: 18px;
-    border: 1px solid gray;
     cursor: pointer;
-    border-radius: 1px;
+    border-color: gray;
+
 }
-
-
 .cantidad__numero{
     width: 40px;
-    height: 30px;
+    height: 35px;
     text-align: center;
     font-size: 16px;
-    border: 1px solid black;
+    border: black;
     padding: 4px;
 }
 
 .agregar{
     font-family: 'Montserrat', sans-serif;
     width: 120px;
-    height: 40px;
+    height: 35px;
     background-color: white;
     color: black;
     font-size: 14px;
     border-color: black;
     cursor: pointer;
+    margin-left: 20px;
 }
 
 

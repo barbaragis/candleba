@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ItemCount } from "../components/ItemCount/ItemCount";
 import { getCandle } from "../lib/candles.requests";
 import "../pages/Detail.css"
 import { useNavigate, useParams } from "react-router-dom";
 import { useCartContext } from "../state/CartContext";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ClipLoader } from "react-spinners";
 
 
 export const Detail = () =>{
     const {id} = useParams();
     const navigate = useNavigate();
     const [candle, setCandle] = useState({});
-    const {agregarProducto} = useCartContext();
+    const {agregarProducto , itemCarrito} = useCartContext();
 
     useEffect(() =>{
         getCandle(id).then((res) =>{
@@ -22,13 +21,17 @@ export const Detail = () =>{
     }, []);
 
 
-    const handleAgregar = (cantidad) => {
 
-        agregarProducto(candle, cantidad);
-    }
+    const handleAgregar = useCallback(
+        (cantidad) => {
+            agregarProducto(candle, cantidad);
+
+        },
+        [agregarProducto , candle]
+    );
 
 
-    if(!Object.keys(candle).length) return 
+    if(!Object.keys(candle).length) return <ClipLoader />
 
     return(
         <div className="item__detalle">
@@ -40,8 +43,8 @@ export const Detail = () =>{
                 <h2 className="item__titulo"> {candle.title} </h2>
                 <span className="item__precio"> $ {candle.price} </span>
                 <p className="item__descripcion"> {candle.description} </p>
-                <span> Solo quedan {candle.stock}</span>
-                <ItemCount stock={candle.stock}  onAdd={handleAgregar} />
+                {candle.stock > 0 && <span className="item__stock">  {candle.stock} unidades disponibles !</span>}
+                <ItemCount stock={candle.stock - (itemCarrito?.(id)?.cantidad  || 0)} onAdd={handleAgregar} />
             </div>
         </div>
     )

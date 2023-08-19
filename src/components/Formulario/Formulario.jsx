@@ -1,160 +1,175 @@
-import { useEffect, useState } from "react";
+
+import { useState } from "react"
+import "../Formulario/Formulario.css"
 import { useCartContext } from "../../state/CartContext";
 import { agregarOrden } from "../../lib/orden.requests";
-import "../Formulario/Formulario.css"
-import { Link } from "react-router-dom";
-import ClipLoader from "react-spinners/ClipLoader";
+import { updateCandles } from "../../lib/candles.requests";
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-
-
-function Formulario  () {
-    const [Cargando, setCargando] = useState(false);
-    const{vaciarCarrito , totalCarrito } = useCartContext();
-    const [nombre, setNombre] = useState('');
+export const Formulario = () => {
+    const [nombre,setNombre] = useState('');
     const [apellido, setApellido] = useState('');
-    const [email, setEmail] = useState('');
-    const [emailValido , setEmailValido] = useState('');
-    const [telefono, setTelefono] = useState('');
-    const [esValido, setEsValido] = useState(false);
-    const [error, setError] = useState({
-        nombre: '',
-        apellido : '',
-        email : '',
-        telefono: '',
-    })
+    const [telefono,setTelefono] = useState('');
+    const [email,setEmail] = useState('');
+    const [email2 , setEmail2 ] = useState('');
+    const [ordenCreada, setOrdenCreada] = useState(false);
     const [ordenId, setOrdenId] = useState(null);
-    const [mostrarMensaje, setMostrarMensaje] = useState(false);
-    const [mostrarValidacion , setMostrarValidacion] = useState(false);
+    const [mostrarBoton, setMostrarBoton] = useState(true);
 
+    const { carrito , totalCarrito , vaciarCarrito} = useCartContext();
 
-    useEffect (() =>{
-        const nombreValido = nombre.trim().length >=3 ;
-        const apellidoValido= apellido.trim() !== '';
-        const emailValidoFormato = /\S+@\S+\.\S+/.test(email);
-        const telefonoValido = telefono.trim() !== '';
+    const crearOrden = async () => {
 
-        setError({
-            nombre: nombreValido ? '' : "Verifique los datos ingresados",
-            apellido: apellidoValido ? '' : "Verifique los datos ingresados",
-            email: emailValido ? '' : "El correo no es valido",
-            telefono: telefonoValido ? '' : "El telefono es obligatorio",
-        })
-
-        setEsValido(nombreValido && apellidoValido && emailValidoFormato && telefonoValido);
-    } , [nombre , apellido, email, telefono]);
-
-        const handleSubmit = async (event) =>{
-            event.preventDefault();
-            if (esValido) {
-                setCargando(true);
-
-                try {
-                    await crearOrden();
-                }catch (error){
-                    console.error('error' , error)
-                }
-                setCargando(false);
-            }else{
-              mostrarError();
-            }
-        };
-
-        const mostrarError = () =>{
-            const nuevoError ={
-                nombre: '',
-                apellido: '',
-                email: '',
-                telefono : '',
-            }
-            setError(nuevoError);
-        }
-
-
-        const {carrito} = useCartContext();
-
-        const items = carrito.map(({ id, title , price }) =>({
+        const items = carrito.map(({id,title, price , cantidad}) =>({
             id,
             title,
             price,
+            cantidad
         }));
 
-        const crearOrden = async () =>{
-            const orden = {
-                comprador: {nombre , telefono , email},
-                items,
-                total: totalCarrito(),
-            };
+        const orden = {
+            comprador: { nombre, apellido, telefono, email },
+            items,
+            total: totalCarrito(),
+        }
 
-        try{
         const id = await agregarOrden(orden);
-            vaciarCarrito();
-            setOrdenId(id);
-            setMostrarMensaje(true);
-            setNombre('')
-            setApellido('')
-            setEmail('')
-            setEmailValido('')
-            setTelefono('')
-    } catch(error){
-        console.error('error' , error);
+
+        await updateCandles(items);
+        vaciarCarrito();
+        
+
+        setOrdenCreada(true);
+        setOrdenId(id);
+        setMostrarBoton(false);
+
     }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(!validarForm()){
+            return;
+        } 
+        crearOrden();
+    }
+
+    function EmailValido (email){
+        const emailvalidacion = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        return emailvalidacion.test(email)
+    }
+
+    const validarForm = () =>{
+        if (nombre.trim () === ''){
+            toast.error('Debes ingresar un nombre', {
+                position: "top-center",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                });
+        
+        return false;
+    }
+
+    if (apellido.trim () === ''){
+        toast.error('Debes ingresar tu apellido', {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
+    return false;
+    }
+
+    if (!telefono.match(/^[0-9]{7,14}$/)){
+        toast.error('Debes ingresar tu número de teléfono', {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
+    
+    return false;
+    }
+
+    if (!EmailValido(email)){
+        toast.error('El email es incorrecto', {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
+    
+    return false;
+    }
+
+    if (email !== email2) {
+        toast.error('Las direcciones de email no coinciden', {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
+        return false;
+    }
+
+    return true;
 }
 
-        return(
-            <>
-            <h1> DATOS DE CONTACTO </h1>
-            <form className="formulario" onSubmit={handleSubmit}>
-                <div className="form" >
-                    <label htmlFor="formGroupExampleInput" className="form-label">Nombre</label>
-                    <input type="text" className={`form-control ${error.nombre && mostrarValidacion
-                         ? 'is-invalid' : ''}`} id="formGroupExampleInput"  value={nombre} onChange={(e) => setNombre(e.target.value)} onBlur={mostrarError} />
-                    {mostrarValidacion && nombre.trim().length < 3 && (<p className="text-danger"> Verifique los datos ingresados </p>)}
-                </div>
-                <div  className="form">
-                    <label htmlFor="formGroupExampleInput" className="form-label"> Apellido</label>
-                    <input type="text" className={`form-control ${mostrarValidacion && apellido.trim() === '' ? 'is-invalid' : ''}`}  id="formGroupExampleInput" placeholder="Ingresa tu apellido" value={apellido} onChange={(e) => setApellido(e.target.value)} onBlur={mostrarError}/>
-                    {mostrarValidacion && apellido.trim() === '' && (
-                        <p className="text-danger"> El apellido es obligatorio </p>
-                    )}
-                </div>
-                <div  className="form">
-                <label htmlFor="formGroupExampleInput2" className="form-label">Email</label> 
-                <input type="text" className= {`form-control ${mostrarValidacion && !emailValido ? 'is-invalid' : '' } `} id="formGroupExampleInput2" placeholder="Ingresa tu correo electrónico" value={email} onChange={(e) => setEmail(e.target.value)}  onBlur={mostrarError}/>
-                {mostrarValidacion && !emailValido && (
-                    <p className="text-danger"> El correo no es valido</p>
-                )} 
-                </div>
-                <div   className="form">
-                <label htmlFor="formGroupExampleInput2" className="form-label">Confirmar tu correo electrónico</label> 
-                <input type="text" className= {`form-control ${mostrarValidacion && !emailValido ? 'is-invalid' : '' } `} id="formGroupExampleInput2" placeholder="Ingresa tu correo electrónico" value={emailValido} onChange={(e) => setEmailValido(e.target.value)} onBlur={mostrarError} />
-                {mostrarValidacion && !emailValido && (
-                    <p className="text-danger"> Los correos no coinciden </p>
-                )} 
-                </div>
-                <div  className="form" >
-                <label htmlFor="formGroupExampleInput2" className="form-label">Teléfono</label>
-                <input type="text" className={`form-control ${mostrarValidacion && telefono.trim() === '' ? 'is-invalid' : ''}`} id="formGroupExampleInput2" placeholder="Ingresa tu teléfono"  value={telefono} onChange={(e) => setTelefono(e.target.value)} onBlur={mostrarError}/>
-                {mostrarValidacion && telefono.trim() === '' && (
-                    <p className="text-danger"> El telefono es obligatorio </p>
-                )}
-                <button className="form-button" onClick={crearOrden} disabled={!esValido}> Realizar pedido </button>
-                </div>
-                </form>
-                {Cargando && <ClipLoader/>}
-                {mostrarMensaje && (
-                    <div className="mensaje ">
-                        <div className="card" >
-                        <h2 className="card-header">Gracias por su compra </h2> 
-                        <div className="card-body" />
-                            <p> El ID es  : {ordenId}</p>  
-                            <Link  to={"/"} > 
-                            <button className="form-button">VOLVER A HOME </button>
-                            </Link>
-                            </div>
-                        </div>
-                )}
-            </>
-        )
-            } 
+    return(
+        <div className="formulario__wrapper">
+            <div className="card__container">
+                <img src="https://illumecandles.com/cdn/shop/products/2022_ILLUME_FarAndAaway_PicnicInThePark_RGB_LoRes-736689_960x1248.jpg?v=1675285768" alt="imagen"/>
+                <h1>TRAEMOS LA BELLEZA A LA VIDA A TRAVÉS DE LA FRAGANCIA</h1>
+                <p> Creemos en una experiencia de fragancia elevada para todos, sin importar el precio. Utilizamos nuestro conocimiento experto y nuestra pasión por los detalles perfectos para crear más allá de fragancias para el hogar, fragancias personales y productos de belleza diseñados y fabricados con orgullo en Argentina . Para cualquier estilo, cualquier espacio, cualquier persona. Somos CANDLE BA</p>
+            </div>
+        <form className="formulario__container">
+            <h1> Datos de contacto </h1>
+            <div className="mb-3" >
+                <label htmlFor="exampleFormControlInput1" className="form-label"> NOMBRE</label>
+                <input type="text" className="form-control" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Ingresa tu nombre" />
+            </div>
+            <div className="mb-3" >
+                <label htmlFor="exampleFormControlInput1" className="form-label">   APELLIDO </label>
+                <input type="text" className="form-control" value={apellido} onChange={(e) => setApellido(e.target.value)} placeholder="Ingresa tu apellido" />
+            </div>
+            <div className="mb-3" >
+                <label htmlFor="exampleFormControlInput1" className="form-label"> TELÉFONO </label>
+                <input type="number" className="form-control" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="Ingresa tu teléfono" />
+            </div>
+            <div className="mb-3" >
+                <label htmlFor="exampleFormControlInput1" className="form-label"> CORREO ELECTRÓNICO</label>
+                <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Ingresa tu correo electrónico" />
+            </div>
+        <div className="mb-3" >
+            <label htmlFor="exampleFormControlInput1" className="form-label"> CONFIRMAR CORREO ELECTRÓNICO</label>
+        <input type="email" className="form-control" value={email2} onChange={(e) => setEmail2(e.target.value)} placeholder="Ingresa tu correo electrónico" />
+        </div>
+            {mostrarBoton && <button className="form-button" onClick={handleSubmit}> CONFIRMAR ORDEN </button>}
+            {ordenCreada && <span className="form-orden"> Su orden ha sido creada. Su ID es  : {ordenId} </span> }
 
-export default Formulario;
+        </form>
+        </div>
+    )
+
+ }

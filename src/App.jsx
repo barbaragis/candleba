@@ -8,7 +8,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import { Category } from './pages/Category';
 import { CartProvider } from './state/CartContext';
 import { Carrito } from './components/Carrito/Carrito';
-import Formulario from './components/Formulario/Formulario';
+import { Formulario } from './components/Formulario/Formulario';
 
 const routes =createBrowserRouter(
   createRoutesFromElements(
