@@ -68,6 +68,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+[![screenshot.png](https://i.postimg.cc/mrsvN07N/screenshot.png)](https://postimg.cc/75Ktqtsf)
+
 Nuestra tienda en línea ofrece una experiencia única para los amantes de la tranquilidad y la armonía en sus hogares. Nos especializamos en ofrecer una amplia gama de velas exquisitamente elaboradas, aromatizadores cautivadores y accesorios cuidadosamente seleccionados para transformar cualquier espacio en un oasis de serenidad. Nuestra plataforma de e-commerce te permite explorar y seleccionar productos fácilmente, además de proporcionarte información detallada sobre cada artículo, con sus respectivos ingredientes y precio.
 Bienvenido a nuestra tienda en línea de velas, aromatizadores y accesorios. Te invitamos a explorar nuestra colección y descubrir cómo puedes transformar tu entorno en un santuario de tranquilidad y belleza.
 
