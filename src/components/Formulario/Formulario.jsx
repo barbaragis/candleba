@@ -6,6 +6,7 @@ import { agregarOrden } from "../../lib/orden.requests";
 import { updateCandles } from "../../lib/candles.requests";
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const Formulario = () => {
     const [nombre,setNombre] = useState('');
@@ -16,6 +17,7 @@ export const Formulario = () => {
     const [ordenCreada, setOrdenCreada] = useState(false);
     const [ordenId, setOrdenId] = useState(null);
     const [mostrarBoton, setMostrarBoton] = useState(true);
+    const [cargando, setCargando] = useState(false);
 
     const { carrito , totalCarrito , vaciarCarrito} = useCartContext();
 
@@ -28,22 +30,25 @@ export const Formulario = () => {
             cantidad
         }));
 
+        setCargando(true);
+
         const orden = {
             comprador: { nombre, apellido, telefono, email },
             items,
             total: totalCarrito(),
         }
-
-        const id = await agregarOrden(orden);
-
-        await updateCandles(items);
-        vaciarCarrito();
-        
-
-        setOrdenCreada(true);
-        setOrdenId(id);
-        setMostrarBoton(false);
-
+        try{
+            const id = await agregarOrden(orden);
+            await updateCandles(items);
+            vaciarCarrito();
+            setOrdenCreada(true);
+            setOrdenId(id);
+            setMostrarBoton(false);
+        }catch (error) {
+            toast.error("Hubo un error. Intenta nuevamente")
+    }finally {
+        setCargando(false);
+    }
     }
 
     const handleSubmit = (e) => {
@@ -143,6 +148,17 @@ export const Formulario = () => {
                 <h1>TRAEMOS LA BELLEZA A LA VIDA A TRAVÉS DE LA FRAGANCIA</h1>
                 <p> Creemos en una experiencia de fragancia elevada para todos, sin importar el precio. Utilizamos nuestro conocimiento experto y nuestra pasión por los detalles perfectos para crear más allá de fragancias para el hogar, fragancias personales y productos de belleza diseñados y fabricados con orgullo en Argentina . Para cualquier estilo, cualquier espacio, cualquier persona. Somos CANDLE BA</p>
             </div>
+            {cargando ? (
+                <div>
+                    <ClipLoader /> 
+                </div>
+            ) :
+        ordenCreada ? (
+            <div className="formulario__mensaje" >
+                <span> Su orden ha sido creada. Su ID es : {ordenId} </span> 
+                <button className="form-button" onClick={() => window.location.href = '/'} >VOLVER A HOME</button>
+                </div>
+        ):(
         <form className="formulario__container">
             <h1> Datos de contacto </h1>
             <div className="mb-3" >
@@ -166,9 +182,8 @@ export const Formulario = () => {
         <input type="email" className="form-control" value={email2} onChange={(e) => setEmail2(e.target.value)} placeholder="Ingresa tu correo electrónico" />
         </div>
             {mostrarBoton && <button className="form-button" onClick={handleSubmit}> CONFIRMAR ORDEN </button>}
-            {ordenCreada && <span className="form-orden"> Su orden ha sido creada. Su ID es  : {ordenId} </span> }
-
         </form>
+        )}
         </div>
     )
 

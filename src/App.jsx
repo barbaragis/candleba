@@ -10,6 +10,7 @@ import { CartProvider } from './state/CartContext';
 import { Carrito } from './components/Carrito/Carrito';
 import { Formulario } from './components/Formulario/Formulario';
 
+
 const routes =createBrowserRouter(
   createRoutesFromElements(
   <Route element={<NavBar/> } > 
